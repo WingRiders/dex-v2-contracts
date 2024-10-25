@@ -1,0 +1,7 @@
+packages: ./.
+
+tests: true
+test-show-details: streaming
+
+program-options
+  ghc-options: -j +RTS -A128m -n2m -RTS

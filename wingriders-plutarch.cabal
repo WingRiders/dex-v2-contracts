@@ -1,0 +1,130 @@
+cabal-version: 3.0
+name:          wingriders-plutarch
+description:   WingRiders DEX - Plutarch contracts
+version:       0.1
+build-type:    Simple
+author:        WingRiders
+maintainer:    WingRiders
+tested-with:   GHC ==9.2.3
+
+common lang
+  default-language:   Haskell2010
+  ghc-options:
+    -Wall -Wcompat -Wincomplete-record-updates
+    -Wincomplete-uni-patterns -Wredundant-constraints -Werror
+    -Wpartial-fields -fobject-code -fno-ignore-interface-pragmas
+    -fno-omit-interface-pragmas
+
+  build-depends:
+    , base
+    , bytestring
+    , liqwid-plutarch-extra
+    , plutarch
+    , text
+
+  default-extensions:
+    BangPatterns
+    BinaryLiterals
+    ConstraintKinds
+    DataKinds
+    DeriveAnyClass
+    DeriveFunctor
+    DeriveGeneric
+    DeriveTraversable
+    DerivingStrategies
+    DerivingVia
+    DuplicateRecordFields
+    EmptyCase
+    ExistentialQuantification
+    FlexibleContexts
+    FlexibleInstances
+    GADTs
+    GeneralizedNewtypeDeriving
+    HexFloatLiterals
+    ImportQualifiedPost
+    InstanceSigs
+    KindSignatures
+    LambdaCase
+    MultiParamTypeClasses
+    NamedFieldPuns
+    NumericUnderscores
+    OverloadedRecordDot
+    OverloadedStrings
+    QualifiedDo
+    RankNTypes
+    RecordWildCards
+    ScopedTypeVariables
+    StandaloneDeriving
+    TemplateHaskell
+    TupleSections
+    TypeApplications
+    TypeFamilies
+    TypeOperators
+    TypeSynonymInstances
+    UndecidableInstances
+
+library
+  import:          lang
+  ghc-options:
+    -fobject-code -fno-ignore-interface-pragmas
+    -fno-omit-interface-pragmas -fno-spec-constr -fno-specialise
+
+  hs-source-dirs:  src
+  exposed-modules:
+    DEX.Constants
+    DEX.Factory
+    DEX.Mint.Validity
+    DEX.Pool
+    DEX.Pool.ConstantProduct
+    DEX.Pool.Stableswap
+    DEX.Pool.Util
+    DEX.Request
+    DEX.Staking.RewardMint
+    DEX.Treasury.Holder
+    DEX.Types.Base
+    DEX.Types.Classes
+    DEX.Types.Factory
+    DEX.Types.Pool
+    DEX.Types.Request
+    DEX.Types.Treasury
+    Other.FixedSupplyPolicy
+    Plutarch.Mint.Util
+    Plutarch.PlutusScript
+    Plutarch.Types.Base
+    Plutarch.Types.Classes
+    Plutarch.Util
+    Plutus.Missing
+    Plutus.Util
+
+  build-depends:
+    , aeson
+    , aeson-pretty
+    , base16-bytestring
+    , data-default
+    , memory
+    , plutarch-context-builder
+    , plutus-ledger-api
+    , plutus-tx
+    , serialise
+
+executable export
+  import:         lang
+  main-is:        ExportDEX.hs
+  hs-source-dirs: scripts
+  ghc-options:    -main-is ExportDEX
+  other-modules:  ExportUtils
+  build-depends:
+    , aeson
+    , aeson-pretty
+    , base16-bytestring
+    , directory
+    , filepath
+    , plutus-core
+    , plutus-ledger-api
+    , plutus-tx
+    , ply-core
+    , ply-plutarch
+    , serialise
+    , split
+    , transformers
+    , wingriders-plutarch

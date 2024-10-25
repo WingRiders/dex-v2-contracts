@@ -1,0 +1,7 @@
+cradle:
+  cabal:
+    - component: "lib:wingriders-plutarch"
+      path: "./src/"
+
+    - component: "exe:export"
+      path: "./scripts/ExportDEX.hs"
